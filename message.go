@@ -111,6 +111,12 @@ func (b *MessageBuilder) AddReplyRequestContactButton(text string) *MessageBuild
 	return b
 }
 
+func (b *MessageBuilder) AddReplyRequestLocation(text string) *MessageBuilder {
+	button := tgbotapi.KeyboardButton{Text: text, RequestLocation: true}
+	b.replyKeyboard[len(b.replyKeyboard)-1] = append(b.replyKeyboard[len(b.replyKeyboard)-1], button)
+	return b
+}
+
 func (b *MessageBuilder) AddWebAppButton(text, url string) *MessageBuilder {
 	button := tgbotapi.InlineKeyboardButton{Text: text, WebApp: &tgbotapi.WebAppInfo{URL: url}}
 	b.keyboard[len(b.keyboard)-1] = append(b.keyboard[len(b.keyboard)-1], button)
