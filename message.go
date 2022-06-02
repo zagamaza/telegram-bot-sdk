@@ -28,6 +28,7 @@ func (b *MessageBuilder) NewMessage(chatId int64) *MessageBuilder {
 	b.chatId = chatId
 	b.editMessage = false
 	return b
+
 }
 
 func (b *MessageBuilder) Message(chatId int64, messageId int) *MessageBuilder {
