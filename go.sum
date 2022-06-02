@@ -1,0 +1,4 @@
+github.com/mazanur/telegram-bot-api/v6 v6.0.0-20220421071204-e33745a9fa85 h1:hZuVfTDrQCXqp4p6EagFZrSevns/fM5ipiTS5n4G0p0=
+github.com/mazanur/telegram-bot-api/v6 v6.0.0-20220421071204-e33745a9fa85/go.mod h1:3Xeo8WsPS90sLLGS3DVF8HwhiAvBwpxlJJpEC2tAqLo=
+github.com/pkg/errors v0.9.1 h1:FEBLx1zS214owpjy7qsBeixbURkuhQAwrK5UwLGTwt4=
+github.com/pkg/errors v0.9.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
