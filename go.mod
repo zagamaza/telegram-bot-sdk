@@ -1,4 +1,4 @@
-module telegram-bot-sdk
+module github.com/zagamaza/telegram-bot-sdk
 
 go 1.17
 
