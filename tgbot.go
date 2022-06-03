@@ -9,10 +9,10 @@ import (
 
 type ChatProvider interface {
 	GetChatInfo(chatId int64) (ChatInfo, error)
-	SaveChatInfo(chat ChatInfo) error
+	UpsertChatInfo(chat ChatInfo) error
 	GetButton(btnId string) (Button, error)
 	SaveButton(button Button) error
-	SaveUser(user User) error
+	UpsertUser(user User) error
 }
 
 type Bot struct {
@@ -83,7 +83,7 @@ func (b *Bot) SaveUser(update *tgbotapi.Update) (User, error) {
 	}
 
 	user := User{UserId: tgUser.ID, UserName: tgUser.UserName, DisplayName: tgUser.FirstName, LastName: tgUser.LastName}
-	err = b.chatProv.SaveUser(user)
+	err = b.chatProv.UpsertUser(user)
 	if err != nil {
 		return User{}, err
 	}

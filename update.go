@@ -188,7 +188,7 @@ func (u *Update) GetChatInfo() *ChatInfo {
 }
 
 func (u *Update) FlushChatInfo() {
-	err := u.chatProv.SaveChatInfo(*u.GetChatInfo())
+	err := u.chatProv.UpsertChatInfo(*u.GetChatInfo())
 	if err != nil {
 		log.Printf("[ERROR] cannot save chat info: %+v", u.GetChatInfo())
 	}
@@ -229,5 +229,5 @@ func (u *Update) FinishChain() *Update {
 }
 
 func (u *Update) SaveChatInfo(info ChatInfo) error {
-	return u.chatProv.SaveChatInfo(info)
+	return u.chatProv.UpsertChatInfo(info)
 }
