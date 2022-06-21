@@ -77,35 +77,15 @@ func (b *Bot) WrapRequest(req *http.Request) (*Update, error) {
 }
 
 func (b *Bot) SaveUser(update *tgbotapi.Update) (User, error) {
-	tgUser, err := getFrom(update)
-	if err != nil {
-		return User{}, err
+	tgUser := update.SentFrom()
+	if tgUser == nil {
+		return User{}, errors.Errorf("Not define user, update - %v", update)
 	}
 
 	user := User{UserId: tgUser.ID, UserName: tgUser.UserName, DisplayName: tgUser.FirstName, LastName: tgUser.LastName}
-	err = b.chatProv.UpsertUser(user)
+	err := b.chatProv.UpsertUser(user)
 	if err != nil {
 		return User{}, err
 	}
 	return user, nil
-}
-
-func getFrom(update *tgbotapi.Update) (tgbotapi.User, error) {
-	var user *tgbotapi.User
-	if update.CallbackQuery != nil {
-		user = update.CallbackQuery.From
-	} else if update.Message != nil {
-		user = update.Message.From
-	} else if update.EditedMessage != nil {
-		user = update.EditedMessage.From
-	} else if update.InlineQuery != nil {
-		user = update.InlineQuery.From
-	} else if update.MyChatMember != nil {
-		user = &update.MyChatMember.From
-	} else if update.PreCheckoutQuery != nil {
-		user = update.PreCheckoutQuery.From
-	} else {
-		return tgbotapi.User{}, errors.Errorf("Not define user, update - %v", update)
-	}
-	return *user, nil
 }
